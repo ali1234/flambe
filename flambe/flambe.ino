@@ -1,4 +1,4 @@
-// rev 54.1
+// rev 54.2
 
 #include <Servo.h>
 
@@ -166,7 +166,7 @@ void flambe(Input input, unsigned long pulse_len) {
     // For the fan to be On we must at least be in On state
     // (ie trigger High.)
     if (state == On && pulse_len > F_THRESH) {
-        unsigned long scaled = F_MIN + ((F_MAX - F_MIN) * ((pulse_len - F_THRESH) * 1.0 / (trigger_bands[3] - F_THRESH)));
+        unsigned long scaled = F_MIN + ((F_MAX - F_MIN) * (pulse_len - F_THRESH) * 1.0 / (trigger_bands[3] - F_THRESH));
         fan.write(scaled);
         Serial.print(scaled);
     } else {
